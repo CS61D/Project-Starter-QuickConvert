@@ -43,15 +43,15 @@ export const formatFileSize = (size: number | undefined) => {
   return `${newSize.toFixed(2)} ${units[i]}`;
 };
 
-// inputFullName and outputFullName include the file extension,
-// example: "input.png" and "output.jpg"
+// outputFullName include the file extension,
+// example: "output.jpg"
 export async function convertFile(
   ffmpeg: FFmpeg | null,
   file: File,
-  inputFullName: string,
   outputFullName: string,
 ) {
-  console.log("Converting file:", outputFullName);
+  const inputFullName = file.name;
+
   try {
     if (!ffmpeg) {
       throw new Error("FFmpeg not loaded");
