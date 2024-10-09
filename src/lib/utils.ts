@@ -82,6 +82,13 @@ export async function convertFile(
     // Create a downloadable URL
     const url = URL.createObjectURL(blob);
 
+    // Clean up: Remove input and output files from FFmpeg's file system
+    Promise.all([
+      ffmpeg.deleteFile(inputFullName),
+      ffmpeg.deleteFile(outputFullName),
+    ]);
+    console.log("Input and output files removed from FFmpeg filesystem");
+
     return { outputObjectUrl: url, outputFileSize: size, outputFullName };
   } catch (error) {
     console.error("Error converting file:", error);
