@@ -82,7 +82,7 @@ export async function convertFile(
     // Create a downloadable URL
     const url = URL.createObjectURL(blob);
 
-    return { url, size, outputFullName };
+    return { outputObjectUrl: url, outputFileSize: size, outputFullName };
   } catch (error) {
     console.error("Error converting file:", error);
     throw error; // Re-throw the error so it can be handled by the caller
